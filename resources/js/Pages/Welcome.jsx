@@ -1,5 +1,4 @@
 import { Grid } from "@/Components/Grid";
-import Navbar from "@/Components/NavBar";
 
 export default function Welcome() {
     return (
