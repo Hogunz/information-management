@@ -33,22 +33,31 @@ import {
 
 export default function App() {
     const [open, setOpen] = React.useState(false);
-    const [currentImages, setCurrentImages] = React.useState([]);
+    const [currentData, setCurrentData] = React.useState({
+        imageLink: "",
+        imageLink1: [],
+        videoLink: [],
+        title: "",
+    });
 
-    const handleOpen = (images) => {
-        setCurrentImages(images);
+    const handleOpen = (data) => {
+        setCurrentData(data);
         setOpen(true);
     };
 
     const handleClose = () => {
         setOpen(false);
-        setCurrentImages([]);
+        setCurrentData({
+            imageLink: "",
+            imageLink1: [],
+            videoLink: [],
+            title: "",
+        });
     };
 
     const data = [
         {
-            imageLink:
-                "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+            imageLink: "img/1.jpg",
             imageLink1: [
                 "/img/topnotchers/1.png",
                 "/img/topnotchers/2.png",
@@ -64,64 +73,44 @@ export default function App() {
                 "/img/topnotchers/12.png",
                 "/img/topnotchers/13.png",
             ],
-            title: "Home of Topnotchers",
+            title: "Home of Topnotchers 【1】",
         },
         {
-            imageLink:
-                "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-            imageLink1: [
-                "img/admission/1.jpg",
-                "img/admission/2.jpg",
-                "img/admission/3.jpg",
-                "img/admission/4.jpg",
-                "img/admission/5.jpg",
-                "img/admission/6.jpg",
-                "img/admission/7.jpg",
-                "img/admission/8.jpg",
-                "img/admission/9.jpg",
-                "img/admission/10.jpg",
-                "img/admission/11.jpg",
-                "img/admission/12.jpg",
-                "img/admission/13.jpg",
-                "img/admission/14.jpg",
-                "img/admission/15.jpg",
-            ],
-            title: "How to Enroll",
+            imageLink: "img/2.jpg",
+            imageLink1: [],
+            title: "How to Enroll【2】",
+            videoLink: ["vid/enrollment.mp4"],
         },
         {
-            imageLink:
-                "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+            imageLink: "img/3.jpg",
             imageLink1: [
                 "/img/step 1.jpg",
                 "/img/step 2.jpg",
                 "/img/step 3.jpg",
                 "/img/step 4.jpg",
             ],
-            title: "Queueing System",
+            title: "Queueing System 【3】",
         },
         {
-            imageLink:
-                "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+            imageLink: "img/4.jpg",
             imageLink1: [
                 "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
                 "https://images.unsplash.com/photo-1432462770865-65b70566d673?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
             ],
-            title: "Library / Escalator",
+            title: "Library / Escalator 【4】",
         },
         {
-            imageLink:
-                "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+            imageLink: "img/5.jpg",
             imageLink1: [
                 "img/portal/1.jpg",
                 "img/portal/2.jpg",
                 "img/portal/3.jpg",
                 "img/portal/4.jpg",
             ],
-            title: "Portal",
+            title: "Portal 【5】",
         },
         {
-            imageLink:
-                "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+            imageLink: "img/6.jpg",
             imageLink1: [
                 "img/buildings/1.jpg",
                 "img/buildings/2.jpg",
@@ -148,7 +137,7 @@ export default function App() {
                 "img/buildings/23.jpg",
                 "img/buildings/24.jpg",
             ],
-            title: "Buildings and Facilities",
+            title: "Buildings and Facilities 【6】",
         },
     ];
     return (
@@ -156,6 +145,7 @@ export default function App() {
             <Swiper
                 parallax={true}
                 init={false}
+                loop={true}
                 effect={"coverflow"}
                 navigation={true}
                 pagination={{
@@ -165,15 +155,12 @@ export default function App() {
                 centeredSlides={true}
                 slidesPerView={"auto"}
                 autoplay={{
-                    delay: 2500,
+                    delay: 4000,
                     disableOnInteraction: false,
                 }}
-                onSlideChange={() =>
-                    swiperRef.current && swiperRef.current.autoplay.start()
-                }
                 coverflowEffect={{
                     rotate: 50,
-                    stretch: 0,
+                    stretch: 2,
                     depth: 100,
                     modifier: 1,
                     slideShadows: true,
@@ -189,46 +176,57 @@ export default function App() {
                 ]}
                 className=""
             >
-                {data.map(({ imageLink, imageLink1, title }, index) => (
-                    <div key={index}>
-                        <SwiperSlide className="max-w-2xl">
-                            <div
-                                className="swiper-wrapper"
-                                onClick={() => handleOpen(imageLink1)}
-                            >
-                                <div class="swiper-slide">
-                                    <img
-                                        alt={title}
-                                        className=""
-                                        src={imageLink}
-                                    />
-                                    <div class="content">
-                                        <p
-                                            class="title"
-                                            data-swiper-parallax="-30%"
-                                            data-swiper-parallax-scale=".7"
-                                        >
-                                            {title}
-                                        </p>
-                                    </div>
+                {data.map((media, index) => (
+                    <SwiperSlide className="max-w-5xl" key={index}>
+                        <div
+                            className="swiper-wrapper"
+                            onClick={() => handleOpen(media)}
+                        >
+                            <div className="swiper-slide w-full h-full object-center bg-center object-cover">
+                                <img
+                                    alt={media.title}
+                                    className=""
+                                    src={media.imageLink}
+                                />
+                                <div className="content absolute top-[40%] left-0 width-[70%] pl-[5%] text-white">
+                                    <p
+                                        className="title text-[3.0em] font-bold mb-[30px] shadow-sm"
+                                        data-swiper-parallax="-50%"
+                                        data-swiper-parallax-scale="1"
+                                    >
+                                        {media.title}
+                                    </p>
                                 </div>
                             </div>
-                        </SwiperSlide>
-                    </div>
+                        </div>
+                    </SwiperSlide>
                 ))}
             </Swiper>
 
             <Dialog size="xl" open={open} handler={handleClose}>
                 <DialogBody>
                     <Carousel>
-                        {currentImages.map((imageLink1, index) => (
+                        {currentData.imageLink1.map((image, index) => (
                             <img
-                                key={index}
+                                key={`img` + index}
                                 alt={`image-${index}`}
                                 className="h-[48rem] w-full rounded-lg object-cover object-center"
-                                src={imageLink1}
+                                src={image}
                             />
                         ))}
+
+                        {currentData.videoLink &&
+                            currentData.videoLink.map((videoLink, index) => (
+                                <video
+                                    key={`vid` + index}
+                                    alt={`video-${index}`}
+                                    className="h-[48rem] w-full rounded-lg object-cover object-center"
+                                    controls
+                                    autoPlay
+                                >
+                                    <source src={videoLink} type="video/mp4" />
+                                </video>
+                            ))}
                     </Carousel>
                 </DialogBody>
             </Dialog>
