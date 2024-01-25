@@ -1,4 +1,5 @@
 import Carousel from "@/Components/Carousel";
+const module = import("./path/to/module");
 
 import Header from "@/Components/Header";
 export default function Welcome() {
